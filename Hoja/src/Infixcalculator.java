@@ -20,6 +20,14 @@ public class Infixcalculator<T> implements IStack<T>, IPostfixCalculator {
 		itsvector = new Vector<T>();
 		opcion = 0;
 	}
+
+	public Infixcalculator(ArrayList<T> miListaInterna, SinglyLinkedList<T> milistaenlzada, DoublyLinkedList<T> dobleenlazada, Vector<T> itsvector, int opcion) {
+		this.miListaInterna = miListaInterna;
+		this.milistaenlzada = milistaenlzada;
+		this.dobleenlazada = dobleenlazada;
+		this.itsvector = itsvector;
+		this.opcion = opcion;
+	}
 	
 	
 	/** 
