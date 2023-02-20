@@ -15,11 +15,15 @@ public class UIcalculator {
     Scanner in = new Scanner(System.in);
   
     PostFixCalculator<T> calculadora = new PostFixCalculator<>();
+    Calculator<String> incalculadora = new Calculator<>();  
     int a;
     int b;
     T resultado;
     int elswitch;
     String fpath;
+    String data = "";
+    String[] listaStrings;
+    int opcionnumero;
 
     
     System.out.println("Bienvenido a la calculadora Postfix e Infix Calculator");
@@ -27,24 +31,45 @@ public class UIcalculator {
     System.out.println("Que Opcion desea realizar?");
     elswitch = in.nextInt();
     in.nextLine();
+    System.out.println("\nAntes de eso desea usar \n1.Stack Vector \n2.Lista  \nArraylist");
+    opcionnumero = in.nextInt();
+    in.nextLine();
 
 
     switch(elswitch){
         case 1:{ //Infix
+            //Patron singleton
+            incalculadora = Calculator.getInstance();
             System.out.println("Ingrese la ruta del archivo ej C:\\ejemplos\\example1.txt");
             fpath = in.nextLine();
             try {
                 File myObj = new File(fpath);
                 Scanner myReader = new Scanner(myObj);
                 while (myReader.hasNextLine()) {
-                  String data = myReader.nextLine();
+                   data = myReader.nextLine();
                   System.out.println(data);
+                  //Comienzo de la separación
+                  listaStrings = data.split(" ");
+                  for (int e = 0; e < listaStrings.length; e ++){
+                    incalculadora.push(listaStrings[e]);
+                    System.out.println(incalculadora.peek()); //print 
+                
+                  }
+                  
+                  
+                  
+
                 }
                 myReader.close();
               } catch (FileNotFoundException e) {
                 System.out.println("An error occurred.");
                 e.printStackTrace();
               }
+
+              
+
+
+              //Ahora 
 
             break;
         }
@@ -56,10 +81,10 @@ public class UIcalculator {
                 File myObj = new File(fpath);
                 Scanner myReader = new Scanner(myObj);
                 while (myReader.hasNextLine()) {
-                  String data = myReader.nextLine();
+                   data = myReader.nextLine();
                   System.out.println(data);
                   //calculadora.getItems(data);
-                  String[] listaStrings = data.split(" ");
+                   listaStrings = data.split(" ");
                   for (int i = 0; i<listaStrings.length; i++){
                       if (listaStrings[i].matches("[0-9]*")){
                           calculadora.getItems(listaStrings[i]);

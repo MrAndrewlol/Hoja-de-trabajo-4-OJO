@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.List;
+
 
 import structure5.*;
 
@@ -11,14 +11,32 @@ public class Calculator<T> implements IStack<T>, IPostfixCalculator {
 
 	private ArrayList<T> miListaInterna;
 	private SinglyLinkedList<T> listaLinkedList;
+	private String data;
+	private Vector<T> vector;
+	private static boolean unicainstance = false;
+	private static Calculator<String> calculadora;
+	private int valor; //opcion para elegir linked o single o array o el vector
 	
 	public Calculator() {
 		miListaInterna = new ArrayList<T>(); 
 		listaLinkedList = new SinglyLinkedList<T>();
+		data = "";
+		vector = new Vector<T>();
+		unicainstance = true;
+		valor = 0;
+
 		
 	}
 	
-	
+	public static Calculator<String> getInstance() {
+		if (unicainstance) {
+			return calculadora;
+		} else {
+			calculadora = new Calculator<String>();
+			return calculadora;
+		}
+	}
+
 	/** 
 	 * @return int
 	 * Cuenta los elementos del stack
@@ -126,6 +144,7 @@ public class Calculator<T> implements IStack<T>, IPostfixCalculator {
 		return a/b;
 	}
 	
+
 	
 	/** 
 	 * @param item
@@ -152,4 +171,30 @@ public class Calculator<T> implements IStack<T>, IPostfixCalculator {
 
 		return (ArrayList<String>) miListaInterna;
 	}
+
+	public String getData() {
+		return this.data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public void Calculatoton(int opcionnumero) {
+		count();
+		switch(opcionnumero){
+			case 1:{ // Arraylist
+
+			}
+			case 2:{ //Vector
+
+			}
+
+			case 3:{//lista
+
+			}
+		}
+		
+	}
+
 }
