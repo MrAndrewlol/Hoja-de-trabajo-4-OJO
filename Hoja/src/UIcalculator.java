@@ -14,8 +14,9 @@ public class UIcalculator {
   public static <T> void main(String[] args) {
     Scanner in = new Scanner(System.in);
   
+    Infixcalculator<String> infixcalculadora = new Infixcalculator<String>();
     PostFixCalculator<T> calculadora = new PostFixCalculator<>();
-    Calculator<String> incalculadora = new Calculator<>();  
+    Calculator incalculadora = new Calculator();  
     int a;
     int b;
     T resultado;
@@ -31,7 +32,7 @@ public class UIcalculator {
     System.out.println("Que Opcion desea realizar?");
     elswitch = in.nextInt();
     in.nextLine();
-    System.out.println("\nAntes de eso desea usar \n1.Stack Vector \n2.Lista  \nArraylist");
+    System.out.println("\nAntes de eso desea usar \n1.Stack Vector \n2.Lista  \n3.Arraylist");
     opcionnumero = in.nextInt();
     in.nextLine();
 
@@ -50,16 +51,16 @@ public class UIcalculator {
                   System.out.println(data);
                   //Comienzo de la separación
                   listaStrings = data.split(" ");
-                  for (int e = 0; e < listaStrings.length; e ++){
-                    incalculadora.push(listaStrings[e]);
-                    System.out.println(incalculadora.peek()); //print 
+                  incalculadora.setMiListaInterna(infixcalculadora);
+                  incalculadora.Calculatoton(opcionnumero, listaStrings);
+                  
                 
                   }
                   
                   
                   
 
-                }
+                
                 myReader.close();
               } catch (FileNotFoundException e) {
                 System.out.println("An error occurred.");

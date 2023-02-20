@@ -7,38 +7,52 @@ import structure5.*;
  * @author José Prince
  * Utilizado de la hoja de trabajo No.2
  */
-public class Calculator<T> {
+public class Calculator {
 
-	private PostFixCalculator<String> miListaInterna;
-	private  AbstractStack<SinglyLinkedList<String>> listaLinkedList;
-	private String data;
-	private Vector<T> vector;
+	private Infixcalculator<String> miListaInterna;
+	private PostFixCalculator<String> milistapostfix;
 	private static boolean unicainstance = false;
-	private static Calculator<String> calculadora;
+	private static Calculator calculadora;
 	private int valor; //opcion para elegir linked o single o array o el vector
+	private String data;
 	
 	public Calculator() {
-		miListaInterna = new PostFixCalculator<String>(); 
-		listaLinkedList = new SinglyLinkedList<T>();
 		data = "";
-		vector = new Vector<T>();
 		unicainstance = true;
 		valor = 0;
+		miListaInterna = new Infixcalculator<>();
+		milistapostfix = new PostFixCalculator<>();
+	}
 
-		
+
+	public Calculator(Infixcalculator<String> miListaInterna,PostFixCalculator<String> milistapostfix, int valor, String data) {
+		this.miListaInterna = miListaInterna;
+		this.valor = valor;
+		this.data = data;
+		this.milistapostfix = milistapostfix;
 	}
 	
-	public static Calculator<String> getInstance() {
+
+	
+	
+	/** 
+	 * @return Calculator<String>
+	 */
+	public static Calculator getInstance() {
 		if (unicainstance) {
 			return calculadora;
 		} else {
-			calculadora = new Calculator<String>();
+			calculadora = new Calculator();
 			return calculadora;
 		}
 	}
 
 	
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getData() {
 		return this.data;
 	}
@@ -47,22 +61,65 @@ public class Calculator<T> {
 		this.data = data;
 	}
 
-	public void Calculatoton(int opcionnumero) {
+	public void Calculatoton(int opcionnumero, String listaString[]) {
+		miListaInterna.setOpcion(opcionnumero);
+		String listainterna[] = listaString;
+		
 		switch(opcionnumero){
 			case 1:{ // Arraylist
+				while(miListaInterna.isEmpty() ){
+					for (int e = 0; e < listainterna.length; e ++){
+						miListaInterna.push(listaString[e]);
+						System.out.println(miListaInterna.peek()); //print
+					}
+
+				}
+
 
 			}
-			case 2:{ //Vector
-				miListaInterna.peek();
+			case 2:{ //lista single
+				
+				
 			}
 
 			case 3:{//lista
 
 			}
+
+			case 4:{//lista doble
+
+			}
 		}
+
+
+		
 		
 	}
 
+
+	public Infixcalculator<String> getMiListaInterna() {
+		return this.miListaInterna;
+	}
+
+	public void setMiListaInterna(Infixcalculator<String> miListaInterna) {
+		this.miListaInterna = miListaInterna;
+	}
+
+	public PostFixCalculator<String> getmilistapostfix() {
+		return this.milistapostfix;
+	}
+
+	public void setmilistapostfix(PostFixCalculator<String> milistapostfix) {
+		this.milistapostfix = milistapostfix;
+	}
+
+	public int getValor() {
+		return this.valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
 
 
 
