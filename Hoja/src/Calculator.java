@@ -72,6 +72,9 @@ public class Calculator {
 		switch(opcionnumero){
 			case 1:{ // Arraylist
 				boolean decision = false;
+				int valorA = 0;
+				int valorB = 0;
+			
 				while(decision == false){
 					for (int e = 0; e < listainterna.length; e ++){
 						if ( listaString[e].matches("[0-9]*")){
@@ -83,6 +86,7 @@ public class Calculator {
 						if ( listaString[e].matches("[+,-,*,/]")){
 							miListaInterna.push(listaString[e]);
 							
+							
 						}
 
 						if ( listaString[e].matches("[)]")){
@@ -90,83 +94,444 @@ public class Calculator {
 							operador = miListaInterna.peek();
 							estalista.add(operador);
 							miListaInterna.pull();
+				
 
 						}	
-						
-					}
-					while(miListaInterna.isEmpty() == false){
-						String datoameter;
-						datoameter = miListaInterna.peek();
-						miListaInterna.pull();
-						estalista.add(datoameter);
-						
-						decision = true;
-
-					}
-					int valorA = 0;
-					int valorB = 0;
-					
-					for (int i = estalista.size(); i > 0; i--){
-						
-						System.out.println(miListaInterna.peek());//llego hasta uno
-						if ( estalista.get(i-1).matches("[0-9]*")){
-							valorA = Integer.valueOf(miListaInterna.peek());
-							miListaInterna.pull();
-						if ( estalista.get(i-1).matches("[0-9]*")){	
-							valorB = Integer.valueOf(miListaInterna.peek()); 
-							miListaInterna.pull();						
-
+						for (int i = 0; i < estalista.size(); i++){
+							if ( listaString[i].matches("[+,-,*,/]")){
+								valorA = Integer.valueOf(estalista.get(i-1));
+								valorB = Integer.valueOf(estalista.get(i-2));
+								switch(listaString[i]){
+									case "+":{
+										valorA = miListaInterna.suma(valorA, valorB);
+										estalista.removeAll(estalista);
+										estalista.add(String.valueOf(valorA));
+										
+										break;
+									}
+									case "-":{
+										valorA = miListaInterna.resta(valorA, valorB);
+										estalista.removeAll(estalista);
+										estalista.add(String.valueOf(valorA));
+										
+										break;
+										
+									}
+									case "*":{
+										valorA = miListaInterna.multiplicacion(valorA, valorB);
+										estalista.removeAll(estalista);
+										estalista.add(String.valueOf(valorA));
+										
+										break;
+										
+									}
+									case "/":{
+										valorA = miListaInterna.division(valorA, valorB);
+										estalista.removeAll(estalista);
+										estalista.add(String.valueOf(valorA));
+										
+										break;
+										
+									}
+								}
 						}
 
-							
+					}
+				}
+					while(estalista.size()> 1){
+						operador = miListaInterna.peek();
+						miListaInterna.pull();
+						valorA = Integer.valueOf(estalista.get(estalista.size()-2));
+						valorB = Integer.valueOf(estalista.get(estalista.size()-1));
 						
-						if ( listaString[estalista.size()-i].matches("[+,-,*,/]")){
-							operador = miListaInterna.peek();
-							miListaInterna.pull();
 							switch(operador){
 								case "+":{
 									valorA = miListaInterna.suma(valorA, valorB);
+									estalista.removeAll(estalista);
+									estalista.add(String.valueOf(valorA));
+									
+									break;
 								}
 								case "-":{
 									valorA = miListaInterna.resta(valorA, valorB);
+									estalista.removeAll(estalista);
+									estalista.add(String.valueOf(valorA));
+									
+									break;
 									
 								}
 								case "*":{
 									valorA = miListaInterna.multiplicacion(valorA, valorB);
+									estalista.removeAll(estalista);
+									estalista.add(String.valueOf(valorA));
+									
+									break;
 									
 								}
 								case "/":{
 									valorA = miListaInterna.division(valorA, valorB);
+									estalista.removeAll(estalista);
+									estalista.add(String.valueOf(valorA));
+									
+									break;
 									
 								}
 							}
-							
-						}
+
 					}
-				}
-
-					
-					
-					
-						
-					 
-
-
-				}
-
-
+				System.out.println("El resultado es de " +estalista.get(0));
+				estalista.removeAll(estalista);
+				decision = true;
 			}
+			break;
+		}
 			case 2:{ //lista single
-				
-				
+				 boolean decision = false;
+				 int valorA = 0;
+				 int valorB = 0;
+			
+				 while(decision == false){
+					 for (int e = 0; e < listainterna.length; e ++){
+						 if ( listaString[e].matches("[0-9]*")){
+							 datus = listaString[e];
+							 estalista.add(datus);
+ 
+						 }
+					 
+						 if ( listaString[e].matches("[+,-,*,/]")){
+							 miListaInterna.push(listaString[e]);
+							 
+							 
+						 }
+ 
+						 if ( listaString[e].matches("[)]")){
+							 datus = estalista.get(estalista.size()-1);
+							 operador = miListaInterna.peek();
+							 estalista.add(operador);
+							 miListaInterna.pull();
+					
+						 }	
+						 for (int i = 0; i < estalista.size(); i++){
+							 if ( listaString[i].matches("[+,-,*,/]")){
+								 valorA = Integer.valueOf(estalista.get(i-1));
+								 valorB = Integer.valueOf(estalista.get(i-2));
+								 switch(listaString[i]){
+									 case "+":{
+										 valorA = miListaInterna.suma(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+									 }
+									 case "-":{
+										 valorA = miListaInterna.resta(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "*":{
+										 valorA = miListaInterna.multiplicacion(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "/":{
+										 valorA = miListaInterna.division(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+								 }
+						 }
+ 
+					 }
+				 }
+					 while(estalista.size()> 1){
+						 operador = miListaInterna.peek();
+						 miListaInterna.pull();
+						 valorA = Integer.valueOf(estalista.get(estalista.size()-2));
+						 valorB = Integer.valueOf(estalista.get(estalista.size()-1));
+						 
+							 switch(operador){
+								 case "+":{
+									 valorA = miListaInterna.suma(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+								 }
+								 case "-":{
+									 valorA = miListaInterna.resta(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "*":{
+									 valorA = miListaInterna.multiplicacion(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "/":{
+									 valorA = miListaInterna.division(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+							 }
+ 
+					 }
+				 System.out.println("El resultado es de " +estalista.get(0));
+				 estalista.removeAll(estalista);
+				 decision = true;
+			 }
+			 break;
 			}
 
 			case 3:{//lista
-
+				 // Arraylist
+				 boolean decision = false;
+				 int valorA = 0;
+				 int valorB = 0;
+				 
+				 while(decision == false){
+					 for (int e = 0; e < listainterna.length; e ++){
+						 if ( listaString[e].matches("[0-9]*")){
+							 datus = listaString[e];
+							 estalista.add(datus);
+ 
+						 }
+					 
+						 if ( listaString[e].matches("[+,-,*,/]")){
+							 miListaInterna.push(listaString[e]);
+							 
+							 
+						 }
+ 
+						 if ( listaString[e].matches("[)]")){
+							 datus = estalista.get(estalista.size()-1);
+							 operador = miListaInterna.peek();
+							 estalista.add(operador);
+							 miListaInterna.pull();
+							  
+ 
+						 }	
+						 for (int i = 0; i < estalista.size(); i++){
+							 if ( listaString[i].matches("[+,-,*,/]")){
+								 valorA = Integer.valueOf(estalista.get(i-1));
+								 valorB = Integer.valueOf(estalista.get(i-2));
+								 switch(listaString[i]){
+									 case "+":{
+										 valorA = miListaInterna.suma(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+									 }
+									 case "-":{
+										 valorA = miListaInterna.resta(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "*":{
+										 valorA = miListaInterna.multiplicacion(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "/":{
+										 valorA = miListaInterna.division(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+								 }
+						 }
+ 
+					 }
+				 }
+					 while(estalista.size()> 1){
+						 operador = miListaInterna.peek();
+						 miListaInterna.pull();
+						 valorA = Integer.valueOf(estalista.get(estalista.size()-2));
+						 valorB = Integer.valueOf(estalista.get(estalista.size()-1));
+						 
+							 switch(operador){
+								 case "+":{
+									 valorA = miListaInterna.suma(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+								 }
+								 case "-":{
+									 valorA = miListaInterna.resta(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "*":{
+									 valorA = miListaInterna.multiplicacion(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "/":{
+									 valorA = miListaInterna.division(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+							 }
+ 
+					 }
+				 System.out.println("El resultado es de " +estalista.get(0));
+				 estalista.removeAll(estalista);
+				 decision = true;
+			 }
+			 break;
 			}
-
 			case 4:{//lista doble
 
+				 // Arraylist
+				 boolean decision = false;
+				 int valorA = 0;
+				 int valorB = 0;
+				 
+				 while(decision == false){
+					 for (int e = 0; e < listainterna.length; e ++){
+						 if ( listaString[e].matches("[0-9]*")){
+							 datus = listaString[e];
+							 estalista.add(datus);
+ 
+						 }
+					 
+						 if ( listaString[e].matches("[+,-,*,/]")){
+							 miListaInterna.push(listaString[e]);
+							 
+							 
+						 }
+ 
+						 if ( listaString[e].matches("[)]")){
+							 datus = estalista.get(estalista.size()-1);
+							 operador = miListaInterna.peek();
+							 estalista.add(operador);
+							 miListaInterna.pull();
+				
+ 
+						 }	
+						 for (int i = 0; i < estalista.size(); i++){
+							 if ( listaString[i].matches("[+,-,*,/]")){
+								 valorA = Integer.valueOf(estalista.get(i-1));
+								 valorB = Integer.valueOf(estalista.get(i-2));
+								 switch(listaString[i]){
+									 case "+":{
+										 valorA = miListaInterna.suma(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+									 }
+									 case "-":{
+										 valorA = miListaInterna.resta(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "*":{
+										 valorA = miListaInterna.multiplicacion(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+									 case "/":{
+										 valorA = miListaInterna.division(valorA, valorB);
+										 estalista.removeAll(estalista);
+										 estalista.add(String.valueOf(valorA));
+										 
+										 break;
+										 
+									 }
+								 }
+						 }
+ 
+					 }
+				 }
+					 while(estalista.size()> 1){
+						 operador = miListaInterna.peek();
+						 miListaInterna.pull();
+						 valorA = Integer.valueOf(estalista.get(estalista.size()-2));
+						 valorB = Integer.valueOf(estalista.get(estalista.size()-1));
+						 
+							 switch(operador){
+								 case "+":{
+									 valorA = miListaInterna.suma(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+								 }
+								 case "-":{
+									 valorA = miListaInterna.resta(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "*":{
+									 valorA = miListaInterna.multiplicacion(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+								 case "/":{
+									 valorA = miListaInterna.division(valorA, valorB);
+									 estalista.removeAll(estalista);
+									 estalista.add(String.valueOf(valorA));
+									 
+									 break;
+									 
+								 }
+							 }
+ 
+					 }
+				 System.out.println("El resultado es de " +estalista.get(0));
+				 estalista.removeAll(estalista);
+				 decision = true;
+			 }
+				break;
 			}
 		}
 
@@ -175,7 +540,7 @@ public class Calculator {
 		
 	}
 
-	public void CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1+2 a 1 2 +
+	public void CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1 2 + a  1 + 2
 		miListaInterna.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
 		ArrayList<String> estalista = new ArrayList<>();
