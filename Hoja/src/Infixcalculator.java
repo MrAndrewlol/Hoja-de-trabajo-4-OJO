@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import structure5.*;
 
 /**
- * @author José Prince
+ * @author Andre Jo
  * Utilizado de la hoja de trabajo No.2
  */
-public class Infixcalculator<T> implements IStack<T>, IPostfixCalculator {
+public class Infixcalculator<T> implements IStack<T>, IinfixCalculator {
 
 	private ArrayList<T> miListaInterna;
 	private SinglyLinkedList<T> milistaenlzada;

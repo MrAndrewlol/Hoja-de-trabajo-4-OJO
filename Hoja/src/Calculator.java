@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Arrays;
 
 import structure5.*;
 
@@ -58,10 +58,19 @@ public class Calculator {
 		return this.data;
 	}
 
+	
+	/** 
+	 * @param data
+	 */
 	public void setData(String data) {
 		this.data = data;
 	}
 
+	
+	/** 
+	 * @param opcionnumero
+	 * @param ArrayList<>();switch(opcionnumero
+	 */
 	public void Calculatotinfix(int opcionnumero, String listaString[]) { //Infix osea 1+2 a 1 2 +
 		miListaInterna.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
@@ -541,44 +550,117 @@ public class Calculator {
 	}
 
 	public void CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1 2 + a  1 + 2
-		miListaInterna.setOpcion(opcionnumero);
+		milistapostfix.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
 		ArrayList<String> estalista = new ArrayList<>();
 		
-		switch(opcionnumero){
-			case 1:{ // Arraylist
+			 // Arraylist
+				int pi = 0;
 					for (int e = 0; e < listainterna.length; e ++){
+
 						if ( listaString[e].matches("[+,-,*,/]")){
-							miListaInterna.push(listaString[e]);
-							System.out.println(miListaInterna.peek()); //print
+							milistapostfix.push(listaString[e]);
+							System.out.println(milistapostfix.peek()); //print
+							pi--;
 							
 						}
 						else if (listaString[e].matches("[0-9]*")){
 							estalista.add(listaString[e]);
-							System.out.println(estalista.get(0));
+							System.out.println(estalista.get(pi));
+						}
+						pi++;
+					}
+					int opinion = estalista.size()-1;
+					while(milistapostfix.isEmpty() == false){
+						
+						estalista.add(opinion, milistapostfix.peek());
+						milistapostfix.pull();
+						opinion = opinion - 1;
 
+					}
+					int valorA = 0;
+					int valorB = 0;
+					boolean suii = true;
+					String sentence = "";
+					for(int z = 0;z < estalista.size(); z++){
+						sentence = sentence + estalista.get(z);
+					}
+					
+
+					for(int b = 0;b < estalista.size()-1; b++){
+						if (estalista.get(b).matches("[*,/]")){
+							valorA = Integer.valueOf(estalista.get(b+1));
+							valorB = Integer.valueOf(estalista.get(b-1));
+							switch(estalista.get(b)){
+								case "*":{
+									valorA = milistapostfix.multiplicacion(valorA, valorB);
+									estalista.remove(b+1);
+									estalista.remove(b);
+									estalista.remove(b-1);
+									
+									estalista.add(String.valueOf(valorA));
+									b = 0;
+									suii = false;
+									
+
+									break;
+									
+								}
+								case "/":{
+									valorA = milistapostfix.division(valorA, valorB);
+									estalista.remove(b+1);
+									estalista.remove(b);
+									estalista.remove(b-1);
+									estalista.add(String.valueOf(valorA));
+									b = 0;
+									suii = false;
+									
+									break;
+									
+								}
+							}
+
+						}
+						
+						if (estalista.get(b).matches("[-,+]" )& suii == false){
+							valorA = Integer.valueOf(estalista.get(b+1));
+							valorB = Integer.valueOf(estalista.get(b-1));
+							switch(estalista.get(b)){
+								case "+":{
+									valorA = milistapostfix.suma(valorA, valorB);
+									estalista.remove(b+1);
+									estalista.remove(b);
+									estalista.remove(b-1);
+									
+									estalista.add(0, String.valueOf(valorA));
+									b = 0;
+									
+
+									break;
+									
+								}
+								case "-":{
+									valorA = milistapostfix.resta(valorA, valorB);
+									estalista.remove(b+1);
+									estalista.remove(b);
+									estalista.remove(b-1);
+									
+									estalista.add(String.valueOf(valorA));
+									b = 0;
+									
+									break;
+									
+								}
+							}
 
 						}
 
 					}
+					System.out.println("El resultado es "+ sentence +  " es " +estalista.get(0));
 					
-				}
-
-
-			
-			case 2:{ //lista single
 				
-				
-			}
 
-			case 3:{//lista
 
-			}
-
-			case 4:{//lista doble
-
-			}
-		}
 
 
 		
@@ -586,22 +668,11 @@ public class Calculator {
 	}
 	
 
-	public Infixcalculator<String> getMiListaInterna() {
-		return this.miListaInterna;
-	}
 
-	public void setMiListaInterna(Infixcalculator<String> miListaInterna) {
-		this.miListaInterna = miListaInterna;
-	}
-
-	public PostFixCalculator<String> getmilistapostfix() {
-		return this.milistapostfix;
-	}
-
-	public void setmilistapostfix(PostFixCalculator<String> milistapostfix) {
-		this.milistapostfix = milistapostfix;
-	}
-
+	
+	/** 
+	 * @return int
+	 */
 	public int getValor() {
 		return this.valor;
 	}
