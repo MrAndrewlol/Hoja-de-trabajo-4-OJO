@@ -16,7 +16,7 @@ public class UIcalculator {
   
     Infixcalculator<String> infixcalculadora = new Infixcalculator<String>();
     PostFixCalculator<T> calculadora = new PostFixCalculator<>();
-    Calculator incalculadora = new Calculator();  
+    Calculator incalculadora;  
     int a;
     int b;
     T resultado;
@@ -38,7 +38,7 @@ public class UIcalculator {
 
 
     switch(elswitch){
-        case 1:{ //Infix
+        case 1:{ //Postfix a infix
             //Patron singleton
             incalculadora = Calculator.getInstance();
             System.out.println("Ingrese la ruta del archivo ej C:\\ejemplos\\example1.txt");
@@ -52,7 +52,7 @@ public class UIcalculator {
                   //Comienzo de la separación
                   listaStrings = data.split(" ");
                   incalculadora.setMiListaInterna(infixcalculadora);
-                  incalculadora.Calculatoton(opcionnumero, listaStrings);
+                  incalculadora.Calculatotinfix(opcionnumero, listaStrings);
                   
                 
                   }
