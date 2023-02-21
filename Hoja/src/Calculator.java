@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * @author Andre Jo
  * Utilizado de la hoja de trabajo No.2
  */
-public class Calculator {
+public class Calculator implements ICalculator{
 
 	private Infixcalculator<String> miListaInterna;
 	private PostFixCalculator<String> milistapostfix;
@@ -14,7 +14,7 @@ public class Calculator {
 	private String data;
 	
 
-	private Calculator() throws SingletonException {
+	public Calculator() throws SingletonException {
 		data = "";
 		unicainstance = true;
 		valor = 0;
@@ -56,7 +56,7 @@ public class Calculator {
 	 * @param opcionnumero
 	 * @param ArrayList<>();switch(opcionnumero
 	 */
-	public void Calculatotinfix(int opcionnumero, String listaString[]) { //Infix osea 1+2 a 1 2 +
+	public int Calculatotinfix(int opcionnumero, String listaString[]) { //Infix osea 1+2 a 1 2 +
 		miListaInterna.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
 		String datus;
@@ -170,12 +170,18 @@ public class Calculator {
 							}
 
 					}
-				System.out.println("El resultado es de " +estalista.get(0));
-				estalista.removeAll(estalista);
-				decision = true;
+				
+					decision = true;
+				
+
 			}
+			System.out.println("El resultado es " +estalista.get(0));
+			int resultado = Integer.valueOf(estalista.get(0));
+			estalista.removeAll(estalista);
+			return resultado;
 		}
-	public void CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1 2 + a  1 + 2
+
+	public int CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1 2 + a  1 + 2
 		milistapostfix.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
 		ArrayList<String> estalista = new ArrayList<>();
@@ -186,7 +192,7 @@ public class Calculator {
 
 						if ( listaString[e].matches("[+,-,*,/]")){
 							milistapostfix.push(listaString[e]);
-							System.out.println(milistapostfix.peek()); //print
+							
 							pi--;
 							
 						}
@@ -282,7 +288,9 @@ public class Calculator {
 						}
 
 					}
-					System.out.println("El resultado es "+ sentence +  " es " +estalista.get(0));
+					System.out.println("El resultado de "+ sentence +  " es " +estalista.get(0));
+					int resultado = Integer.valueOf(estalista.get(0));
+					return resultado;
 
 	}
 	/** 
