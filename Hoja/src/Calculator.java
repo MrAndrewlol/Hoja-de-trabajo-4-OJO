@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * @author José Prince
+ * @author Andre Jo
  * Utilizado de la hoja de trabajo No.2
  */
 public class Calculator {
@@ -29,10 +29,6 @@ public class Calculator {
 		this.data = data;
 		this.milistapostfix = milistapostfix;
 	}
-	
-
-	
-	
 	/** 
 	 * @return Calculator<String>
 	 */
@@ -43,27 +39,19 @@ public class Calculator {
 			calculadora = new Calculator();
 			return calculadora;
 		}
-	}
-
-	
-
-	
+	}	
 	/** 
 	 * @return String
 	 */
 	public String getData() {
 		return this.data;
-	}
-
-	
+	}	
 	/** 
 	 * @param data
 	 */
 	public void setData(String data) {
 		this.data = data;
 	}
-
-	
 	/** 
 	 * @param opcionnumero
 	 * @param ArrayList<>();switch(opcionnumero
@@ -74,8 +62,6 @@ public class Calculator {
 		String datus;
 		String operador;
 		ArrayList<String> estalista = new ArrayList<>();
-		
-
 				boolean decision = false;
 				int valorA = 0;
 				int valorB = 0;
@@ -189,8 +175,6 @@ public class Calculator {
 				decision = true;
 			}
 		}
-
-
 	public void CalculatoPost(int opcionnumero, String listaString[]) { //Infix osea 1 2 + a  1 + 2
 		milistapostfix.setOpcion(opcionnumero);
 		String listainterna[] = listaString;
@@ -299,33 +283,17 @@ public class Calculator {
 
 					}
 					System.out.println("El resultado es "+ sentence +  " es " +estalista.get(0));
-					
-				
 
-
-
-
-		
-		
 	}
-	
-
-
-	
 	/** 
 	 * @return int
 	 */
 	public int getValor() {
 		return this.valor;
 	}
-
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
-
-
-
-
 
 }
 	
