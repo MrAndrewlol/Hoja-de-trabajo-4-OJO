@@ -17,5 +17,5 @@
 	
 	boolean isOperator(String item);
 	
-	java.util.ArrayList<String> getItems(String _expresion);
+	
 }

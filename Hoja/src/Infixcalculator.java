@@ -266,17 +266,7 @@ public class Infixcalculator<T> implements IStack<T>, IinfixCalculator {
 	}
 	
 	
-	/** 
-	 * @param _expresion
-	 * @return ArrayList<String>
-	 * Introduce el elemento indicado al stack
-	 */
-	public ArrayList<String> getItems(String _expresion){
-		T newItem = (T) _expresion;
-		push(newItem);
-
-		return (ArrayList<String>) miListaInterna;
-	}
+	
 
 
 	public int getOpcion() {
